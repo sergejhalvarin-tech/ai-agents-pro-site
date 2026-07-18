@@ -49,17 +49,22 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:6px}
 
 /* ============ ATMOSPHERE (background photo) ============ */
-/* Фото живёт в верхней зоне документа, обработано в дуотон и растворяется вниз —
-   так оно даёт «воздух» и настроение, но не мешает читать текст. */
+/* Фото живёт в верхней зоне документа В ПОЛНОМ ЦВЕТЕ и растворяется вниз.
+   Цвет не трогаем — только чуть поднимаем насыщенность и гасим яркость,
+   а читаемость держим отдельным скримом под текстом. */
 .atmos{position:absolute;top:0;left:0;right:0;height:min(1180px,132vh);z-index:0;overflow:hidden;pointer-events:none;
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 42%,rgba(0,0,0,.55) 68%,transparent 100%);
-          mask-image:linear-gradient(180deg,#000 0%,#000 42%,rgba(0,0,0,.55) 68%,transparent 100%)}
-.atmos__photo{position:absolute;inset:-10% -4%;background:url('bg.jpg') center 18%/cover no-repeat;
-  filter:grayscale(1) contrast(1.28) brightness(.38) blur(3px);opacity:.55;will-change:transform}
-.atmos__duotone{position:absolute;inset:0;background:linear-gradient(165deg,#5e6ad2 0%,#2b2f6b 45%,#12060f 100%);
-  mix-blend-mode:color;opacity:.85}
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,.55) 72%,transparent 100%);
+          mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,.55) 72%,transparent 100%)}
+.atmos__photo{position:absolute;inset:-10% -4%;background:url('bg.jpg') center 16%/cover no-repeat;
+  filter:saturate(1.18) contrast(1.04) brightness(.72);opacity:1;will-change:transform}
+/* лёгкая цветокоррекция «в тон» сайту — не перекрашивает, а подмешивает индиго в тени */
+.atmos__duotone{position:absolute;inset:0;background:linear-gradient(165deg,rgba(94,106,210,.3) 0%,rgba(43,47,107,.2) 50%,rgba(18,6,15,.35) 100%);
+  mix-blend-mode:soft-light}
+/* скрим: прозрачный по краям, плотный по центру и снизу — текст читается, картинка живая */
 .atmos__scrim{position:absolute;inset:0;
-  background:radial-gradient(115% 80% at 50% 4%,rgba(8,9,10,.18) 0%,rgba(8,9,10,.72) 46%,var(--bg) 88%)}
+  background:
+    radial-gradient(58% 52% at 50% 44%,rgba(6,7,9,.8) 0%,rgba(6,7,9,.58) 48%,rgba(6,7,9,.15) 82%,transparent 100%),
+    linear-gradient(180deg,rgba(8,9,10,.5) 0%,rgba(8,9,10,.22) 22%,rgba(8,9,10,.55) 60%,var(--bg) 96%)}
 .atmos__hline{position:absolute;left:0;right:0;bottom:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(124,123,255,.25),transparent)}
 
