@@ -4,233 +4,204 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Agents Pro — Установка HERMES & Openclaw под ключ</title>
-<meta name="description" content="Специалисты по установке и настройке AI-агентов HERMES и Openclaw. MCP-серверы, Telegram-интеграция, 24/7 поддержка. Запуск за 1 час.">
+<meta name="description" content="Специалисты по установке и настройке AI-агентов HERMES и Openclaw. MCP-серверы, Telegram-интеграция, 24/7 поддержка.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg-page:#08090a;--bg-panel:#0f1011;--bg-surface:#191a1b;--text-primary:#f7f8f8;--text-secondary:#d0d6e0;--text-tertiary:#8a8f98;--text-muted:#62666d;--accent:#5e6ad2;--accent-bright:#7170ff;--accent-hover:#828fff;--accent-glow:rgba(94,106,210,0.25);--highlight:#ea2261;--border-subtle:rgba(255,255,255,0.05);--border-standard:rgba(255,255,255,0.08);--border-visible:rgba(255,255,255,0.12);--shadow-card:0 0 0 1px rgba(255,255,255,0.06),0 2px 4px rgba(0,0,0,0.3),0 8px 16px -8px rgba(0,0,0,0.4);--shadow-card-hover:0 0 0 1px rgba(255,255,255,0.1),0 4px 12px rgba(0,0,0,0.4),0 16px 32px -12px rgba(0,0,0,0.5),0 0 60px -20px var(--accent-glow);--shadow-button:0 0 0 1px rgba(94,106,210,0.3),0 4px 16px -4px var(--accent-glow);--font-sans:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',monospace;--section-gap:120px;--content-width:1200px;--transition:0.3s cubic-bezier(0.4,0,0.2,1)}
+:root{--bg-page:#08090a;--text-primary:#f7f8f8;--text-secondary:#d0d6e0;--text-tertiary:#8a8f98;--text-muted:#62666d;--accent:#5e6ad2;--accent-bright:#7170ff;--accent-hover:#828fff;--accent-glow:rgba(94,106,210,.25);--highlight:#ea2261;--border-subtle:rgba(255,255,255,.05);--border-standard:rgba(255,255,255,.08);--border-visible:rgba(255,255,255,.12);--shadow-card:0 0 0 1px rgba(255,255,255,.06),0 2px 4px rgba(0,0,0,.3);--shadow-card-hover:0 0 0 1px rgba(255,255,255,.1),0 4px 12px rgba(0,0,0,.4),0 0 60px -20px var(--accent-glow);--shadow-btn:0 0 0 1px rgba(94,106,210,.3),0 4px 16px -4px var(--accent-glow);--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--gap:120px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;scroll-padding-top:80px}
-body{font-family:var(--font-sans);background:var(--bg-page);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
-::selection{background:rgba(94,106,210,0.3);color:#fff}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--bg-page)}
+body{font-family:var(--font);background:var(--bg-page);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
+::selection{background:rgba(94,106,210,.3);color:#fff}
+::-webkit-scrollbar{width:6px;background:var(--bg-page)}
 ::-webkit-scrollbar-thumb{background:var(--border-visible);border-radius:3px}
-.ambient-glow{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(140px)}
-.ambient-glow--t{top:-350px;left:50%;transform:translateX(-50%);width:1000px;height:700px;background:radial-gradient(circle,var(--accent)0%,transparent 70%);opacity:.13;animation:ambientPulse 8s ease-in-out infinite alternate}
-.ambient-glow--b{bottom:-250px;right:-250px;width:800px;height:600px;background:radial-gradient(circle,var(--highlight)0%,transparent 70%);opacity:.07;animation:ambientPulse 10s ease-in-out 2s infinite alternate}
-@keyframes ambientPulse{0%{opacity:.1;transform:translateX(-50%)scale(1)}100%{opacity:.16;transform:translateX(-50%)scale(1.15)}}
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.012)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012)1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,black 40%,transparent 70%)}
-.container{width:100%;max-width:var(--content-width);margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,9,10,.75);backdrop-filter:blur(20px)saturate(180%);border-bottom:1px solid var(--border-subtle);transition:all var(--transition)}
-.nav.scrolled{background:rgba(8,9,10,.92)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px;max-width:var(--content-width);margin:0 auto;padding:0 32px}
+
+.bg-img{position:fixed;inset:0;z-index:0;background:url('bg.jpg')center/cover no-repeat;filter:brightness(.3)saturate(.5);transform:scale(1.05)}
+.bg-overlay{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 30%,rgba(8,9,10,.2)0%,rgba(8,9,10,.82)60%,rgba(8,9,10,.95)100%)}
+.ambient{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(140px)}
+.ambient-t{top:-350px;left:50%;transform:translateX(-50%);width:1000px;height:700px;background:radial-gradient(circle,var(--accent)0%,transparent 70%);opacity:.07;animation:pulse 8s ease-in-out infinite alternate}
+.ambient-b{bottom:-250px;right:-250px;width:800px;height:600px;background:radial-gradient(circle,var(--highlight)0%,transparent 70%);opacity:.04;animation:pulse 10s ease-in-out 2s infinite alternate}
+@keyframes pulse{0%{opacity:.05}100%{opacity:.1}}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.008)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.008)1px,transparent 1px);background-size:64px 64px}
+
+.c{width:100%;max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,9,10,.8);backdrop-filter:blur(20px)saturate(180%);border-bottom:1px solid var(--border-subtle)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;height:56px;max-width:1200px;margin:0 auto;padding:0 32px}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-bright));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;font-weight:500;color:#fff;box-shadow:0 0 24px -6px var(--accent-glow)}
-.nav-logo-text{font-size:16px;font-weight:600;color:var(--text-primary);letter-spacing:-.32px}
+.nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-bright));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;font-weight:500;color:#fff;box-shadow:0 0 24px -6px var(--accent-glow)}
+.nav-logo-text{font-size:16px;font-weight:600;color:var(--text-primary)}
 .nav-links{display:flex;align-items:center;gap:6px}
-.nav-link{font-size:13px;font-weight:500;color:var(--text-tertiary);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all var(--transition)}
+.nav-link{font-size:13px;font-weight:500;color:var(--text-tertiary);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .3s}
 .nav-link:hover{color:var(--text-primary);background:rgba(255,255,255,.03)}
-.nav-cta{font-size:13px;font-weight:500;background:var(--accent);color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;transition:all var(--transition);box-shadow:var(--shadow-button)}
+.nav-cta{font-size:13px;font-weight:500;background:var(--accent);color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;box-shadow:var(--shadow-btn)}
 .nav-cta:hover{background:var(--accent-bright);transform:translateY(-1px)}
-.hero{position:relative;padding:180px 0 100px;text-align:center;overflow:hidden}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid var(--border-standard);border-radius:9999px;padding:7px 20px;font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:32px}
-.hero-badge-dot{width:7px;height:7px;background:var(--highlight);border-radius:50%;box-shadow:0 0 10px rgba(234,34,97,0.2);animation:dotPulse 2s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero-title{font-size:clamp(38px,6vw,72px);font-weight:700;line-height:1.05;letter-spacing:-.045em;margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto}
+.hero{position:relative;padding:180px 0 100px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--border-standard);border-radius:9999px;padding:7px 20px;font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:32px}
+.hero-badge-dot{width:7px;height:7px;background:var(--highlight);border-radius:50%;box-shadow:0 0 10px rgba(234,34,97,.2);animation:dot 2s ease-in-out infinite}
+@keyframes dot{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-title{font-size:clamp(38px,6vw,72px);font-weight:700;line-height:1.05;letter-spacing:-.045em;margin-bottom:24px;max-width:900px;margin:0 auto 24px}
 .hero-title span{background:linear-gradient(135deg,var(--accent-bright),var(--accent-hover),var(--highlight));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-subtitle{font-size:20px;font-weight:400;line-height:1.7;color:var(--text-tertiary);max-width:640px;margin:0 auto 48px}
-.hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:15px;font-weight:500;padding:14px 30px;border-radius:8px;text-decoration:none;cursor:pointer;transition:all var(--transition);border:none;white-space:nowrap}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:var(--shadow-button)}
-.btn-primary:hover{background:var(--accent-bright);transform:translateY(-2px)}
-.btn-ghost{background:rgba(255,255,255,.02);color:var(--text-secondary);border:1px solid var(--border-standard)}
-.btn-ghost:hover{background:rgba(255,255,255,.05);border-color:var(--border-visible);color:var(--text-primary)}
+.hero-sub{font-size:20px;color:var(--text-tertiary);max-width:640px;margin:0 auto 48px;line-height:1.7}
+.hero-acts{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:15px;font-weight:500;padding:14px 30px;border-radius:8px;text-decoration:none;cursor:pointer;transition:all .3s;border:none}
+.btn-p{background:var(--accent);color:#fff;box-shadow:var(--shadow-btn)}
+.btn-p:hover{background:var(--accent-bright);transform:translateY(-2px)}
+.btn-g{background:rgba(255,255,255,.02);color:var(--text-secondary);border:1px solid var(--border-standard)}
+.btn-g:hover{background:rgba(255,255,255,.05);border-color:var(--border-visible);color:var(--text-primary)}
 .btn-lg{font-size:16px;padding:16px 36px;border-radius:10px;font-weight:600}
-.hero-visual{margin:80px auto 0;max-width:840px}
-.hero-terminal{background:#0a0b0d;border:1px solid var(--border-standard);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card),0 0 120px -40px var(--accent-glow);text-align:left}
-.hero-terminal-header{display:flex;align-items:center;gap:8px;padding:14px 18px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border-subtle)}
-.terminal-dot{width:11px;height:11px;border-radius:50%}
-.terminal-dot--red{background:#ff5f56}.terminal-dot--yellow{background:#ffbd2e}.terminal-dot--green{background:#27c93f}
-.hero-terminal-title{font-size:12px;font-weight:500;color:var(--text-muted);margin-left:8px;font-family:var(--font-mono)}
-.hero-terminal-body{padding:28px 32px;font-family:var(--font-mono);font-size:13px;line-height:2;color:var(--text-secondary)}
+.hero-term{margin:80px auto 0;max-width:840px}
+.hero-term-inner{background:rgba(10,11,13,.85);backdrop-filter:blur(10px);border:1px solid var(--border-standard);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card),0 0 120px -40px var(--accent-glow);text-align:left}
+.term-hdr{display:flex;align-items:center;gap:8px;padding:14px 18px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border-subtle)}
+.tdot{width:11px;height:11px;border-radius:50%}.tdot-r{background:#ff5f56}.tdot-y{background:#ffbd2e}.tdot-g{background:#27c93f}
+.term-title{font-size:12px;font-weight:500;color:var(--text-muted);margin-left:8px;font-family:var(--mono)}
+.term-body{padding:28px 32px;font-family:var(--mono);font-size:13px;line-height:2;color:var(--text-secondary)}
 .tp{color:var(--accent-bright)}.tc{color:var(--text-primary)}.tok{color:#27c93f}.td{color:var(--text-muted)}.th{color:var(--highlight)}
-.section{padding:var(--section-gap)0;position:relative;z-index:1}
-.section-label{font-family:var(--font-mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-bright);margin-bottom:16px}
-.section-title{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.04em;margin-bottom:20px}
-.section-desc{font-size:18px;color:var(--text-tertiary);max-width:600px;line-height:1.7}
-.section-header{text-align:center;margin-bottom:80px}
-.section-header .section-desc{margin:0 auto}
+.sec{padding:var(--gap)0;position:relative;z-index:1}
+.sec-label{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-bright);margin-bottom:16px}
+.sec-title{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.04em;margin-bottom:20px}
+.sec-desc{font-size:18px;color:var(--text-tertiary);max-width:600px;line-height:1.7}
+.sec-hdr{text-align:center;margin-bottom:80px}.sec-hdr .sec-desc{margin:0 auto}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-subtle);border-radius:16px;overflow:hidden}
-.stat-item{background:rgba(255,255,255,.015);padding:44px 32px;text-align:center}
-.stat-value{font-size:44px;font-weight:800;letter-spacing:-.05em;margin-bottom:8px;background:linear-gradient(135deg,var(--accent-bright),var(--accent-hover));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-label{font-size:14px;color:var(--text-muted)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.service-card{background:rgba(255,255,255,.015);border:1px solid var(--border-subtle);border-radius:16px;padding:44px 36px;transition:all .4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
-.service-card:hover{border-color:var(--border-visible);box-shadow:var(--shadow-card-hover);transform:translateY(-6px)}
-.service-card--featured{border-color:rgba(94,106,210,0.15);background:rgba(94,106,210,.03)}
-.service-card-badge{position:absolute;top:16px;right:16px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:9999px;background:linear-gradient(135deg,var(--accent),var(--accent-bright));color:#fff}
-.service-card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:28px;font-family:var(--font-mono);font-weight:500}
-.sic-hermes{background:rgba(94,106,210,.12);color:var(--accent-bright);box-shadow:0 0 24px -8px var(--accent-glow)}
-.sic-openclaw{background:rgba(234,34,97,.1);color:var(--highlight)}
-.sic-combo{background:rgba(39,201,63,.1);color:#27c93f}
-.service-card-title{font-size:22px;font-weight:600;letter-spacing:-.03em;margin-bottom:12px}
-.service-card-desc{font-size:15px;color:var(--text-tertiary);line-height:1.7;margin-bottom:28px}
-.service-card-price{font-size:32px;font-weight:700;letter-spacing:-.04em;margin-bottom:4px}
-.service-card-price-sub{font-size:13px;color:var(--text-muted);margin-bottom:24px}
-.service-card-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
-.service-card-features li{font-size:14px;color:var(--text-secondary);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
-.service-card-features li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent-bright);flex-shrink:0;margin-top:7px}
-.workflow{position:relative;max-width:720px;margin:0 auto}
-.workflow-line{position:absolute;left:23px;top:60px;bottom:60px;width:2px;background:linear-gradient(to bottom,transparent,var(--accent)20%,var(--accent-bright)50%,var(--accent)80%,transparent)}
-.workflow-steps{display:flex;flex-direction:column;gap:56px}
-.workflow-step{display:flex;gap:36px;align-items:flex-start}
-.workflow-step-num{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--border-standard);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:16px;font-weight:600;color:var(--accent-bright);flex-shrink:0;z-index:1}
-.workflow-step-content h3{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
-.workflow-step-content p{font-size:15px;color:var(--text-tertiary);line-height:1.7}
-.workflow-step-code{margin-top:14px;background:rgba(255,255,255,.02);border:1px solid var(--border-subtle);border-radius:8px;padding:14px 18px;font-family:var(--font-mono);font-size:13px;color:var(--text-secondary);line-height:1.8}
-.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.testimonial-card{background:rgba(255,255,255,.015);border:1px solid var(--border-subtle);border-radius:16px;padding:36px 32px}
-.testimonial-stars{color:#f59e0b;font-size:16px;margin-bottom:16px}
-.testimonial-text{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;font-style:italic}
-.testimonial-author{display:flex;align-items:center;gap:12px}
-.testimonial-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px}
-.ta-1{background:linear-gradient(135deg,var(--accent),var(--accent-bright))}
-.ta-2{background:linear-gradient(135deg,var(--highlight),#f96bee)}
-.ta-3{background:linear-gradient(135deg,#10b981,#34d399)}
-.testimonial-name{font-size:14px;font-weight:600}.testimonial-role{font-size:12px;color:var(--text-muted)}
+.stat{background:rgba(15,16,17,.7);padding:44px 32px;text-align:center;backdrop-filter:blur(10px)}
+.stat-v{font-size:44px;font-weight:800;letter-spacing:-.05em;margin-bottom:8px;background:linear-gradient(135deg,var(--accent-bright),var(--accent-hover));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-l{font-size:14px;color:var(--text-muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:rgba(15,16,17,.8);backdrop-filter:blur(10px);border:1px solid var(--border-subtle);border-radius:16px;padding:44px 36px;transition:all .4s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--border-visible);box-shadow:var(--shadow-card-hover);transform:translateY(-6px)}
+.card--feat{border-color:rgba(94,106,210,.2);background:rgba(94,106,210,.06)}
+.card-badge{position:absolute;top:16px;right:16px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:9999px;background:linear-gradient(135deg,var(--accent),var(--accent-bright));color:#fff}
+.card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:28px;font-family:var(--mono);font-weight:500}
+.ci-h{background:rgba(94,106,210,.15);color:var(--accent-bright)}.ci-o{background:rgba(234,34,97,.12);color:var(--highlight)}.ci-c{background:rgba(39,201,63,.12);color:#27c93f}
+.card-title{font-size:22px;font-weight:600;margin-bottom:12px;letter-spacing:-.03em}
+.card-desc{font-size:15px;color:var(--text-tertiary);line-height:1.7;margin-bottom:28px}
+.card-price{font-size:32px;font-weight:700;margin-bottom:4px}
+.card-price-sub{font-size:13px;color:var(--text-muted);margin-bottom:24px}
+.card-feat{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.card-feat li{font-size:14px;color:var(--text-secondary);display:flex;align-items:flex-start;gap:10px}
+.card-feat li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent-bright);flex-shrink:0;margin-top:7px}
+.wf{position:relative;max-width:720px;margin:0 auto}
+.wf-line{position:absolute;left:23px;top:60px;bottom:60px;width:2px;background:linear-gradient(to bottom,transparent,var(--accent)20%,var(--accent-bright)50%,var(--accent)80%,transparent)}
+.wf-steps{display:flex;flex-direction:column;gap:56px}
+.wf-step{display:flex;gap:36px;align-items:flex-start}
+.wf-num{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border-standard);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:16px;font-weight:600;color:var(--accent-bright);flex-shrink:0;z-index:1}
+.wf-content h3{font-size:20px;font-weight:600;margin-bottom:8px}
+.wf-content p{font-size:15px;color:var(--text-tertiary);line-height:1.7}
+.wf-code{margin-top:14px;background:rgba(255,255,255,.03);border:1px solid var(--border-subtle);border-radius:8px;padding:14px 18px;font-family:var(--mono);font-size:13px;color:var(--text-secondary);line-height:1.8}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tcard{background:rgba(15,16,17,.7);backdrop-filter:blur(10px);border:1px solid var(--border-subtle);border-radius:16px;padding:36px 32px}
+.tstars{color:#f59e0b;font-size:16px;margin-bottom:16px}
+.ttext{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;font-style:italic}
+.tauthor{display:flex;align-items:center;gap:12px}
+.tavatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px}
+.ta-1{background:linear-gradient(135deg,var(--accent),var(--accent-bright))}.ta-2{background:linear-gradient(135deg,var(--highlight),#f96bee)}.ta-3{background:linear-gradient(135deg,#10b981,#34d399)}
+.tname{font-size:14px;font-weight:600}.trole{font-size:12px;color:var(--text-muted)}
 .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.faq-item{background:rgba(255,255,255,.015);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden}
-.faq-q{width:100%;background:none;border:none;color:var(--text-primary);font-family:var(--font-sans);font-size:16px;font-weight:500;padding:22px 28px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item{background:rgba(15,16,17,.7);backdrop-filter:blur(10px);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;color:var(--text-primary);font-family:var(--font);font-size:16px;font-weight:500;padding:22px 28px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .faq-q:hover{color:var(--accent-bright)}
-.faq-q-icon{font-size:20px;color:var(--text-muted);transition:transform var(--transition)}
-.faq-item.open .faq-q-icon{transform:rotate(45deg);color:var(--accent-bright)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:15px;color:var(--text-tertiary);line-height:1.7;padding:0 28px}
+.faq-q-icon{font-size:20px;color:var(--text-muted)}.faq-item.open .faq-q-icon{transform:rotate(45deg);color:var(--accent-bright)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s;font-size:15px;color:var(--text-tertiary);line-height:1.7;padding:0 28px}
 .faq-item.open .faq-a{max-height:300px;padding:0 28px 22px}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.form-group{margin-bottom:20px}
-.form-label{display:block;font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:8px}
-.form-input,.form-textarea,.form-select{width:100%;background:rgba(255,255,255,.02);border:1px solid var(--border-standard);border-radius:8px;padding:14px 16px;font-family:var(--font-sans);font-size:15px;color:var(--text-primary);outline:none;transition:all var(--transition)}
-.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--accent-bright);box-shadow:0 0 0 3px rgba(94,106,210,.15)}
-.form-input::placeholder,.form-textarea::placeholder{color:var(--text-muted)}
-.form-textarea{min-height:120px;resize:vertical}
-.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8f98' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
-.form-select option{background:var(--bg-surface);color:var(--text-primary)}
-.form-submit{width:100%}
-.form-success{display:none;text-align:center;padding:40px}
-.form-success.show{display:block}
-.form-success-icon{font-size:56px;margin-bottom:16px}
-.form-success h3{font-size:22px;font-weight:600;margin-bottom:8px}
-.form-error{display:none;font-size:13px;color:var(--highlight);margin-top:6px}
-.form-error.show{display:block}
-.cta-card{background:rgba(255,255,255,.02);border:1px solid var(--border-standard);border-radius:24px;padding:80px 56px;position:relative;overflow:hidden;text-align:center}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.fgroup{margin-bottom:20px}
+.flabel{display:block;font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:8px}
+.finput,.ftextarea,.fselect{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border-standard);border-radius:8px;padding:14px 16px;font-family:var(--font);font-size:15px;color:var(--text-primary);outline:none;transition:all .3s;backdrop-filter:blur(5px)}
+.finput:focus,.ftextarea:focus,.fselect:focus{border-color:var(--accent-bright);box-shadow:0 0 0 3px rgba(94,106,210,.15)}
+.finput::placeholder,.ftextarea::placeholder{color:var(--text-muted)}
+.ftextarea{min-height:120px;resize:vertical}
+.fselect{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath fill='%238a8f98' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+.fselect option{background:#191a1b;color:var(--text-primary)}
+.fsubmit{width:100%}
+.fsuccess{display:none;text-align:center;padding:40px}.fsuccess.show{display:block}
+.fsuccess-icon{font-size:56px;margin-bottom:16px}
+.cta-card{background:rgba(15,16,17,.8);backdrop-filter:blur(10px);border:1px solid var(--border-standard);border-radius:24px;padding:80px 56px;text-align:center;position:relative;overflow:hidden}
 .cta-card::before{content:'';position:absolute;inset:0;background:radial-gradient(800px circle at 50% 0%,rgba(94,106,210,.1),transparent 60%);pointer-events:none}
 .cta-emoji{font-size:48px;margin-bottom:20px;display:block}
-.partners{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;padding:24px 0;opacity:.35;filter:grayscale(1)}
-.partner-logo{font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--text-muted);letter-spacing:.05em}
+.partners{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:24px 0;opacity:.35;filter:grayscale(1)}
+.partner-logo{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--text-muted)}
 .footer{border-top:1px solid var(--border-subtle);padding:56px 0 32px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.footer-brand-desc{font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:16px;max-width:300px}
-.footer-col-title{font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:16px;text-transform:uppercase;letter-spacing:.05em}
-.footer-col-links{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col-links a{font-size:14px;color:var(--text-muted);text-decoration:none;transition:color var(--transition)}
-.footer-col-links a:hover{color:var(--text-primary)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:24px;border-top:1px solid var(--border-subtle)}
-.footer-copy{font-size:13px;color:var(--text-muted)}
-.footer-social{display:flex;gap:16px}
-.footer-social a{font-size:18px;color:var(--text-muted);text-decoration:none}
-@media(max-width:1024px){:root{--section-gap:80px}.services-grid,.testimonials-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.nav-links{display:none}.hero{padding:140px 0 60px}.hero-title{font-size:34px}.hero-subtitle{font-size:16px}.section-title{font-size:30px}.services-grid,.testimonials-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}.stats{grid-template-columns:repeat(2,1fr)}.stat-value{font-size:34px}.cta-card{padding:48px 24px}.footer-grid{grid-template-columns:1fr;gap:32px}.hero-terminal-body{font-size:11px;padding:16px}}
-@media(max-width:480px){.hero{padding:120px 0 40px}.stats{grid-template-columns:1fr}.hero-actions{flex-direction:column}.btn{width:100%;justify-content:center}}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.fdesc{font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:16px;max-width:300px}
+.fctitle{font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:16px;text-transform:uppercase;letter-spacing:.05em}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:10px}
+.flinks a{font-size:14px;color:var(--text-muted);text-decoration:none}.flinks a:hover{color:var(--text-primary)}
+.fbottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border-subtle);flex-wrap:wrap;gap:16px}
+.fcopy{font-size:13px;color:var(--text-muted)}
+@media(max-width:1024px){:root{--gap:80px}.cards,.tgrid{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.cgrid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.nav-links{display:none}.hero{padding:140px 0 60px}.hero-title{font-size:34px}.hero-sub{font-size:16px}.sec-title{font-size:30px}.cards,.tgrid{grid-template-columns:1fr;max-width:480px;margin:0 auto}.stats{grid-template-columns:repeat(2,1fr)}.stat-v{font-size:34px}.cta-card{padding:48px 24px}.fgrid{grid-template-columns:1fr;gap:32px}.term-body{font-size:11px;padding:16px}}
+@media(max-width:480px){.stats{grid-template-columns:1fr}.hero-acts{flex-direction:column}.btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
-<div class="ambient-glow ambient-glow--t"></div>
-<div class="ambient-glow ambient-glow--b"></div>
-<div class="grid-bg"></div>
-<nav class="nav" id="nav">
-<div class="nav-inner">
+<div class="bg-img"></div><div class="bg-overlay"></div>
+<div class="ambient ambient-t"></div><div class="ambient ambient-b"></div><div class="grid-bg"></div>
+<nav class="nav"><div class="nav-i">
 <a href="#" class="nav-logo"><div class="nav-logo-icon">⚡</div><span class="nav-logo-text">AI Agents Pro</span></a>
 <div class="nav-links"><a href="#services" class="nav-link">Услуги</a><a href="#process" class="nav-link">Процесс</a><a href="#reviews" class="nav-link">Отзывы</a><a href="#faq" class="nav-link">FAQ</a><a href="#contact" class="nav-cta">Связаться</a></div>
-</div>
-</nav>
-<section class="hero">
-<div class="container">
+</div></nav>
+<section class="hero"><div class="c">
 <div class="hero-badge"><span class="hero-badge-dot"></span>AI-агенты для бизнеса • 2026</div>
 <h1 class="hero-title">Ваш персональный <span>AI-агент</span><br>за 1 час под ключ</h1>
-<p class="hero-subtitle">Специализируемся на установке и настройке <strong>HERMES</strong> и <strong>Openclaw</strong>. MCP-серверы, Telegram/Discord-коннекторы, RAG-память, авто-деплой — всё из коробки.</p>
-<div class="hero-actions"><a href="#contact" class="btn btn-primary btn-lg">🚀 Заказать установку</a><a href="#process" class="btn btn-ghost btn-lg">Как это работает →</a></div>
-<div class="hero-visual"><div class="hero-terminal">
-<div class="hero-terminal-header"><span class="terminal-dot terminal-dot--red"></span><span class="terminal-dot terminal-dot--yellow"></span><span class="terminal-dot terminal-dot--green"></span><span class="hero-terminal-title">terminal — ai agents pro setup</span></div>
-<div class="hero-terminal-body">
-<span class="td">$</span> <span class="tc">hermes install --preset=production</span><br>
-<span class="td">→</span> <span class="tok">✓</span> <span class="td">Hermes Agent v2.4.1 установлен</span><br>
-<span class="td">→</span> <span class="tok">✓</span> <span class="td">Коннекторы: Telegram, Discord, Slack, CLI</span><br>
-<span class="td">→</span> <span class="tok">✓</span> <span class="td">MCP-серверы: altFINS, TradingView, Windows, 12 шт.</span><br>
-<span class="td">→</span> <span class="tok">✓</span> <span class="td">RAG-память: 2,200 токенов, 50+ скиллов</span><br>
-<span class="td">$</span> <span class="tp">hermes</span> <span class="tc">--status</span><br>
-<span class="th">🟢 AI Agent Active</span> <span class="td">• Модель: deepseek-v4-pro • Uptime: 99.9%</span><br><span class="td">_</span>
-</div></div></div></div>
-</section>
-<section class="section" style="padding-top:0"><div class="container"><div class="stats"><div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">Установленных агентов</div></div><div class="stat-item"><div class="stat-value">12</div><div class="stat-label">MCP-интеграций</div></div><div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">Поддержка</div></div><div class="stat-item"><div class="stat-value">&lt;1ч</div><div class="stat-label">Время запуска</div></div></div></div></section>
-<div class="container" style="padding:40px 32px"><div class="partners"><span class="partner-logo">HERMES AGENT</span><span class="partner-logo">OPENCLAW</span><span class="partner-logo">TELEGRAM API</span><span class="partner-logo">TRADINGVIEW</span><span class="partner-logo">altFINS</span><span class="partner-logo">DEEPSEEK</span></div></div>
-<section class="section" id="services"><div class="container"><div class="section-header"><div class="section-label">Тарифы</div><h2 class="section-title">Три пакета — от базового до VIP</h2><p class="section-desc">От простой установки до полной AI-экосистемы с персональной поддержкой</p></div>
-<div class="services-grid">
-<div class="service-card"><div class="service-card-icon sic-hermes">H</div><h3 class="service-card-title">HERMES Agent</h3><p class="service-card-desc">Персональный AI-агент с памятью, скиллами и MCP. Ваш технический напарник 24/7.</p><div class="service-card-price">от $199</div><div class="service-card-price-sub">единоразово • установка за 1 час</div><ul class="service-card-features"><li>Установка Hermes Agent</li><li>Telegram + Discord коннекторы</li><li>5 MCP-серверов на выбор</li><li>RAG-память и скиллы</li><li>Автодеплой и cron</li></ul><a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center">Выбрать</a></div>
-<div class="service-card service-card--featured"><div class="service-card-badge">Популярный</div><div class="service-card-icon sic-combo">⚡</div><h3 class="service-card-title">HERMES + Openclaw</h3><p class="service-card-desc">Полный AI-стек: оба фреймворка, глубокая интеграция, максимальная гибкость.</p><div class="service-card-price">от $499</div><div class="service-card-price-sub">единоразово • установка за 2 часа</div><ul class="service-card-features"><li>Всё из пакета HERMES</li><li>Openclaw Framework</li><li>Кастомные агенты</li><li>12+ MCP-серверов</li><li>Мониторинг и алертинг</li><li>Приоритетная поддержка 24/7</li></ul><a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Выбрать</a></div>
-<div class="service-card"><div class="service-card-icon sic-openclaw">O</div><h3 class="service-card-title">Openclaw Agent</h3><p class="service-card-desc">Фреймворк для production-grade агентов. Гибкая архитектура, ваш API.</p><div class="service-card-price">от $299</div><div class="service-card-price-sub">единоразово • установка за 1.5 часа</div><ul class="service-card-features"><li>Openclaw Framework</li><li>Создание агентов</li><li>Интеграция с API</li><li>RAG и Vector DB</li><li>CI/CD пайплайн</li></ul><a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center">Выбрать</a></div>
-</div></div></section>
-<section class="section" id="process"><div class="container"><div class="section-header"><div class="section-label">Процесс</div><h2 class="section-title">4 шага — и агент в деле</h2></div>
-<div class="workflow"><div class="workflow-line"></div><div class="workflow-steps">
-<div class="workflow-step"><div class="workflow-step-num">01</div><div class="workflow-step-content"><h3>Аудит и конфигурация</h3><p>Анализируем задачи, подбираем модели, MCP-серверы, платформы. Оптимальный стек под бюджет.</p><div class="workflow-step-code"><span class="td">→</span> Модели: <span class="tp">deepseek-v4, claude-sonnet-4</span><br><span class="td">→</span> Платформы: <span class="tc">Telegram, Discord, CLI</span></div></div></div>
-<div class="workflow-step"><div class="workflow-step-num">02</div><div class="workflow-step-content"><h3>Установка и настройка</h3><p>Разворачиваем агентов на сервере. Конфигурируем коннекторы, память, скиллы.</p><div class="workflow-step-code"><span class="td">$</span> <span class="tc">hermes install --preset=production</span><br><span class="tok">✓</span> <span class="td">Агент запущен • Порт 8080</span></div></div></div>
-<div class="workflow-step"><div class="workflow-step-num">03</div><div class="workflow-step-content"><h3>Интеграция</h3><p>Подключаем инструменты, пишем скиллы и промпты, настраиваем RAG-базу знаний.</p><div class="workflow-step-code"><span class="td">→</span> <span class="tok">✓</span> <span class="td">CRM-интеграция</span> <span class="td">→</span> <span class="tok">✓</span> <span class="td">База знаний (RAG)</span></div></div></div>
-<div class="workflow-step"><div class="workflow-step-num">04</div><div class="workflow-step-content"><h3>Запуск и поддержка</h3><p>Передаём готового агента, обучаем команду, поддержка 24/7 и обновления.</p><div class="workflow-step-code"><span class="th">🟢</span> <span class="tc">Агент в продакшене</span> <span class="td">• uptime 99.9%</span></div></div></div>
+<p class="hero-sub">Специализируемся на установке <strong>HERMES</strong> и <strong>Openclaw</strong>. MCP-серверы, Telegram/Discord, RAG-память, авто-деплой — всё из коробки.</p>
+<div class="hero-acts"><a href="#contact" class="btn btn-p btn-lg">🚀 Заказать установку</a><a href="#process" class="btn btn-g btn-lg">Как это работает →</a></div>
+<div class="hero-term"><div class="hero-term-inner">
+<div class="term-hdr"><span class="tdot tdot-r"></span><span class="tdot tdot-y"></span><span class="tdot tdot-g"></span><span class="term-title">terminal — ai agents pro</span></div>
+<div class="term-body"><span class="td">$</span> <span class="tc">hermes install --preset=production</span><br><span class="td">→</span> <span class="tok">✓</span> <span class="td">Hermes Agent v2.4.1</span><br><span class="td">→</span> <span class="tok">✓</span> <span class="td">Коннекторы: Telegram, Discord, Slack</span><br><span class="td">→</span> <span class="tok">✓</span> <span class="td">MCP-серверы: altFINS, TradingView, 12 шт.</span><br><span class="td">→</span> <span class="tok">✓</span> <span class="td">RAG-память: 2,200 токенов, 50+ скиллов</span><br><span class="td">$</span> <span class="tp">hermes</span> <span class="tc">--status</span><br><span class="th">🟢 AI Agent Active</span> <span class="td">• deepseek-v4-pro • Uptime 99.9%</span><br><span class="td">_</span></div>
 </div></div></div></section>
-<section class="section" id="reviews"><div class="container"><div class="section-header"><div class="section-label">Отзывы</div><h2 class="section-title">Что говорят клиенты</h2></div>
-<div class="testimonials-grid">
-<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">«Hermes заменил мне двух ассистентов. Трейдинг-аналитика, авто-отчёты — всё в одном агенте.»</p><div class="testimonial-author"><div class="testimonial-avatar ta-1">С</div><div><div class="testimonial-name">Сергей А.</div><div class="testimonial-role">Трейдер</div></div></div></div>
-<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">«Openclaw обрабатывает 200+ заявок в день. Ответ сократился с 2 часов до 15 секунд.»</p><div class="testimonial-author"><div class="testimonial-avatar ta-2">А</div><div><div class="testimonial-name">Алия М.</div><div class="testimonial-role">CTO</div></div></div></div>
-<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">«HERMES+Openclaw для склада. Точность 98%, скорость ×10. Лучшая инвестиция года.»</p><div class="testimonial-author"><div class="testimonial-avatar ta-3">Ф</div><div><div class="testimonial-name">Фёдор К.</div><div class="testimonial-role">CEO</div></div></div></div>
+<section class="sec" style="padding-top:0"><div class="c"><div class="stats"><div class="stat"><div class="stat-v">50+</div><div class="stat-l">Установленных агентов</div></div><div class="stat"><div class="stat-v">12</div><div class="stat-l">MCP-интеграций</div></div><div class="stat"><div class="stat-v">24/7</div><div class="stat-l">Поддержка</div></div><div class="stat"><div class="stat-v">&lt;1ч</div><div class="stat-l">Время запуска</div></div></div></div></section>
+<div class="c" style="padding:40px 32px"><div class="partners"><span class="partner-logo">HERMES AGENT</span><span class="partner-logo">OPENCLAW</span><span class="partner-logo">TELEGRAM API</span><span class="partner-logo">TRADINGVIEW</span><span class="partner-logo">altFINS</span><span class="partner-logo">DEEPSEEK</span></div></div>
+<section class="sec" id="services"><div class="c"><div class="sec-hdr"><div class="sec-label">Тарифы</div><h2 class="sec-title">Три пакета — от базового до VIP</h2><p class="sec-desc">От простой установки до полной AI-экосистемы</p></div>
+<div class="cards">
+<div class="card"><div class="card-icon ci-h">H</div><h3 class="card-title">HERMES Agent</h3><p class="card-desc">Персональный AI-агент с памятью, скиллами и MCP. Ваш технический напарник 24/7.</p><div class="card-price">от $199</div><div class="card-price-sub">единоразово • 1 час</div><ul class="card-feat"><li>Установка Hermes Agent</li><li>Telegram + Discord</li><li>5 MCP-серверов</li><li>RAG-память и скиллы</li><li>Автодеплой и cron</li></ul><a href="#contact" class="btn btn-g" style="width:100%;justify-content:center">Выбрать</a></div>
+<div class="card card--feat"><div class="card-badge">Популярный</div><div class="card-icon ci-c">⚡</div><h3 class="card-title">HERMES + Openclaw</h3><p class="card-desc">Полный AI-стек: оба фреймворка + глубокая интеграция.</p><div class="card-price">от $499</div><div class="card-price-sub">единоразово • 2 часа</div><ul class="card-feat"><li>Всё из HERMES</li><li>Openclaw Framework</li><li>Кастомные агенты</li><li>12+ MCP-серверов</li><li>Мониторинг и алертинг</li><li>Поддержка 24/7</li></ul><a href="#contact" class="btn btn-p" style="width:100%;justify-content:center">Выбрать</a></div>
+<div class="card"><div class="card-icon ci-o">O</div><h3 class="card-title">Openclaw Agent</h3><p class="card-desc">Production-grade фреймворк. Гибкая архитектура, ваш API.</p><div class="card-price">от $299</div><div class="card-price-sub">единоразово • 1.5 часа</div><ul class="card-feat"><li>Openclaw Framework</li><li>Создание агентов</li><li>Интеграция с API</li><li>RAG и Vector DB</li><li>CI/CD пайплайн</li></ul><a href="#contact" class="btn btn-g" style="width:100%;justify-content:center">Выбрать</a></div>
 </div></div></section>
-<section class="section" id="faq"><div class="container"><div class="section-header"><div class="section-label">FAQ</div><h2 class="section-title">Частые вопросы</h2></div>
+<section class="sec" id="process"><div class="c"><div class="sec-hdr"><div class="sec-label">Процесс</div><h2 class="sec-title">4 шага — и агент в деле</h2></div>
+<div class="wf"><div class="wf-line"></div><div class="wf-steps">
+<div class="wf-step"><div class="wf-num">01</div><div class="wf-content"><h3>Аудит и конфигурация</h3><p>Анализируем задачи, подбираем модели и MCP-серверы под ваш бюджет.</p><div class="wf-code"><span class="td">→</span> Модели: <span class="tp">deepseek-v4, claude-sonnet-4</span><br><span class="td">→</span> Платформы: <span class="tc">Telegram, Discord, CLI</span></div></div></div>
+<div class="wf-step"><div class="wf-num">02</div><div class="wf-content"><h3>Установка и настройка</h3><p>Разворачиваем агентов, конфигурируем коннекторы и память.</p><div class="wf-code"><span class="td">$</span> <span class="tc">hermes install --preset=production</span><br><span class="tok">✓</span> <span class="td">Агент запущен • Порт 8080</span></div></div></div>
+<div class="wf-step"><div class="wf-num">03</div><div class="wf-content"><h3>Интеграция</h3><p>Подключаем инструменты, пишем скиллы и промпты, настраиваем RAG.</p><div class="wf-code"><span class="td">→</span> <span class="tok">✓</span> <span class="td">CRM-интеграция</span> <span class="td">→</span> <span class="tok">✓</span> <span class="td">База знаний (RAG)</span></div></div></div>
+<div class="wf-step"><div class="wf-num">04</div><div class="wf-content"><h3>Запуск и поддержка</h3><p>Передаём агента, обучаем команду, поддержка 24/7.</p><div class="wf-code"><span class="th">🟢</span> <span class="tc">Агент в продакшене</span> <span class="td">• uptime 99.9%</span></div></div></div>
+</div></div></div></section>
+<section class="sec" id="reviews"><div class="c"><div class="sec-hdr"><div class="sec-label">Отзывы</div><h2 class="sec-title">Что говорят клиенты</h2></div>
+<div class="tgrid">
+<div class="tcard"><div class="tstars">★★★★★</div><p class="ttext">«Hermes заменил двух ассистентов. Трейдинг-аналитика, авто-отчёты — всё в одном агенте.»</p><div class="tauthor"><div class="tavatar ta-1">С</div><div><div class="tname">Сергей А.</div><div class="trole">Трейдер</div></div></div></div>
+<div class="tcard"><div class="tstars">★★★★★</div><p class="ttext">«Openclaw — 200+ заявок в день. Ответ с 2 часов до 15 секунд.»</p><div class="tauthor"><div class="tavatar ta-2">А</div><div><div class="tname">Алия М.</div><div class="trole">CTO</div></div></div></div>
+<div class="tcard"><div class="tstars">★★★★★</div><p class="ttext">«HERMES+Openclaw для склада. Точность 98%, скорость ×10.»</p><div class="tauthor"><div class="tavatar ta-3">Ф</div><div><div class="tname">Фёдор К.</div><div class="trole">CEO</div></div></div></div>
+</div></div></section>
+<section class="sec" id="faq"><div class="c"><div class="sec-hdr"><div class="sec-label">FAQ</div><h2 class="sec-title">Частые вопросы</h2></div>
 <div class="faq-list">
-<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Сколько времени занимает установка?<span class="faq-q-icon">+</span></button><div class="faq-a">Базовая установка HERMES — до 1 часа. HERMES + Openclaw — до 2 часов. Включает все коннекторы и MCP-серверы.</div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Нужен ли мне свой сервер?<span class="faq-q-icon">+</span></button><div class="faq-a">Нет! Развернём на вашем (Windows/Linux/Mac) или предоставим облачный.</div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Какие AI-модели?<span class="faq-q-icon">+</span></button><div class="faq-a">DeepSeek v4, Claude Sonnet/Opus 4, GPT-4o, Gemini 2.5 и десятки других через OpenRouter.</div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Что такое MCP?<span class="faq-q-icon">+</span></button><div class="faq-a">Model Context Protocol — стандарт подключения инструментов к AI: TradingView, altFINS, Windows и др.</div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Поддержка после?<span class="faq-q-icon">+</span></button><div class="faq-a">30 дней поддержки с любым пакетом. HERMES+Openclaw — приоритетная 24/7.</div></div>
+<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Сколько времени занимает установка?<span class="faq-q-icon">+</span></button><div class="faq-a">HERMES — до 1 часа. HERMES + Openclaw — до 2 часов. Включает все коннекторы и MCP.</div></div>
+<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Нужен ли сервер?<span class="faq-q-icon">+</span></button><div class="faq-a">Нет! Развернём на вашем или предоставим облачный.</div></div>
+<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Какие AI-модели?<span class="faq-q-icon">+</span></button><div class="faq-a">DeepSeek v4, Claude Sonnet/Opus 4, GPT-4o, Gemini 2.5 + OpenRouter.</div></div>
+<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Что такое MCP?<span class="faq-q-icon">+</span></button><div class="faq-a">Model Context Protocol — подключение инструментов к AI: TradingView, altFINS и др.</div></div>
+<div class="faq-item"><button class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">Поддержка после?<span class="faq-q-icon">+</span></button><div class="faq-a">30 дней бесплатно. HERMES+Openclaw — приоритетная 24/7.</div></div>
 </div></div></section>
-<section class="section" id="contact"><div class="container"><div class="section-header"><div class="section-label">Связаться</div><h2 class="section-title">Начнём проект?</h2><p class="section-desc">Заполните форму — ответим в Telegram за 15 минут</p></div>
-<div class="contact-grid"><div>
-<form id="contactForm" onsubmit="event.preventDefault();document.getElementById('contactForm').style.display='none';document.getElementById('formSuccess').classList.add('show')">
-<div class="form-group"><label class="form-label">Имя</label><input class="form-input" placeholder="Иван Петров" required></div>
-<div class="form-group"><label class="form-label">Telegram</label><input class="form-input" placeholder="@username" required></div>
-<div class="form-group"><label class="form-label">Пакет</label><select class="form-select"><option>HERMES Agent — от $199</option><option>Openclaw Agent — от $299</option><option selected>HERMES + Openclaw — от $499</option><option>Кастомное решение</option></select></div>
-<div class="form-group"><label class="form-label">Задача</label><textarea class="form-textarea" placeholder="Опишите задачу для AI-агента..." required></textarea></div>
-<button type="submit" class="btn btn-primary form-submit btn-lg">🚀 Отправить заявку</button>
+<section class="sec" id="contact"><div class="c"><div class="sec-hdr"><div class="sec-label">Связаться</div><h2 class="sec-title">Начнём проект?</h2><p class="sec-desc">Ответим в Telegram за 15 минут</p></div>
+<div class="cgrid"><div>
+<form onsubmit="event.preventDefault();this.style.display='none';document.getElementById('fsuccess').classList.add('show')">
+<div class="fgroup"><label class="flabel">Имя</label><input class="finput" placeholder="Иван Петров" required></div>
+<div class="fgroup"><label class="flabel">Telegram</label><input class="finput" placeholder="@username" required></div>
+<div class="fgroup"><label class="flabel">Пакет</label><select class="fselect"><option>HERMES Agent — от $199</option><option>Openclaw Agent — от $299</option><option selected>HERMES + Openclaw — от $499</option><option>Кастомное решение</option></select></div>
+<div class="fgroup"><label class="flabel">Задача</label><textarea class="ftextarea" placeholder="Опишите задачу для AI-агента..." required></textarea></div>
+<button type="submit" class="btn btn-p fsubmit btn-lg">🚀 Отправить заявку</button>
 </form>
-<div class="form-success" id="formSuccess"><div class="form-success-icon">✅</div><h3>Заявка отправлена!</h3><p>Напишем в Telegram в течение 15 минут.</p></div>
+<div class="fsuccess" id="fsuccess"><div class="fsuccess-icon">✅</div><h3>Заявка отправлена!</h3><p style="color:var(--text-tertiary)">Напишем в Telegram в течение 15 минут.</p></div>
 </div>
-<div style="background:rgba(255,255,255,.02);border:1px solid var(--border-standard);border-radius:16px;padding:40px 36px">
+<div style="background:rgba(15,16,17,.8);backdrop-filter:blur(10px);border:1px solid var(--border-standard);border-radius:16px;padding:40px 36px">
 <h3 style="font-size:20px;font-weight:600;margin-bottom:20px">Написать напрямую</h3>
 <div style="display:flex;flex-direction:column;gap:20px">
-<a href="https://t.me/sergey_asgatovich" style="display:flex;align-items:center;gap:16px;padding:18px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border-standard);border-radius:12px;text-decoration:none"><span style="font-size:28px">💬</span><div><div style="font-size:15px;font-weight:600;color:var(--text-primary)">Telegram</div><div style="font-size:13px;color:var(--text-muted)">@sergey_asgatovich</div></div></a>
-<div style="display:flex;align-items:center;gap:16px;padding:18px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border-standard);border-radius:12px"><span style="font-size:28px">⚡</span><div><div style="font-size:15px;font-weight:600;color:var(--text-primary)">Время работы</div><div style="font-size:13px;color:var(--text-muted)">24/7 • Ответ за 15 мин</div></div></div>
+<a href="https://t.me/sergey_asgatovich" style="display:flex;align-items:center;gap:16px;padding:18px 20px;background:rgba(255,255,255,.03);border:1px solid var(--border-standard);border-radius:12px;text-decoration:none"><span style="font-size:28px">💬</span><div><div style="font-size:15px;font-weight:600;color:var(--text-primary)">Telegram</div><div style="font-size:13px;color:var(--text-muted)">@sergey_asgatovich</div></div></a>
+<div style="display:flex;align-items:center;gap:16px;padding:18px 20px;background:rgba(255,255,255,.03);border:1px solid var(--border-standard);border-radius:12px"><span style="font-size:28px">⚡</span><div><div style="font-size:15px;font-weight:600;color:var(--text-primary)">24/7</div><div style="font-size:13px;color:var(--text-muted)">Ответ за 15 мин</div></div></div>
 </div></div></div></div></section>
-<section class="section"><div class="container"><div class="cta-card"><span class="cta-emoji">🤖</span><h2 class="section-title" style="font-size:clamp(28px,4vw,46px)">Готовы к AI-трансформации?</h2><p class="section-desc" style="margin:0 auto 40px;max-width:500px">Первый шаг — просто написать нам.</p><div class="hero-actions"><a href="#contact" class="btn btn-primary btn-lg">🚀 Оставить заявку</a><a href="https://t.me/sergey_asgatovich" class="btn btn-ghost btn-lg">💬 Telegram</a></div></div></div></section>
-<footer class="footer"><div class="container"><div class="footer-grid">
-<div><div style="display:flex;align-items:center;gap:10px"><div class="nav-logo-icon">⚡</div><span style="font-weight:600;font-size:16px">AI Agents Pro</span></div><p class="footer-brand-desc">Специалисты по установке HERMES и Openclaw.</p></div>
-<div><div class="footer-col-title">Услуги</div><ul class="footer-col-links"><li><a href="#services">HERMES Agent</a></li><li><a href="#services">Openclaw Agent</a></li><li><a href="#services">HERMES + Openclaw</a></li></ul></div>
-<div><div class="footer-col-title">Компания</div><ul class="footer-col-links"><li><a href="#process">Процесс</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-<div><div class="footer-col-title">Технологии</div><ul class="footer-col-links"><li>HERMES Agent</li><li>Openclaw</li><li>MCP Protocol</li></ul></div>
+<section class="sec"><div class="c"><div class="cta-card"><span class="cta-emoji">🤖</span><h2 class="sec-title" style="font-size:clamp(28px,4vw,46px)">Готовы к AI-трансформации?</h2><p class="sec-desc" style="margin:0 auto 40px;max-width:500px">Первый шаг — просто написать нам.</p><div class="hero-acts"><a href="#contact" class="btn btn-p btn-lg">🚀 Оставить заявку</a><a href="https://t.me/sergey_asgatovich" class="btn btn-g btn-lg">💬 Telegram</a></div></div></div></section>
+<footer class="footer"><div class="c"><div class="fgrid">
+<div><div style="display:flex;align-items:center;gap:10px"><div class="nav-logo-icon">⚡</div><span style="font-weight:600;font-size:16px">AI Agents Pro</span></div><p class="fdesc">Специалисты по установке HERMES и Openclaw.</p></div>
+<div><div class="fctitle">Услуги</div><ul class="flinks"><li><a href="#services">HERMES Agent</a></li><li><a href="#services">Openclaw Agent</a></li><li><a href="#services">HERMES + Openclaw</a></li></ul></div>
+<div><div class="fctitle">Компания</div><ul class="flinks"><li><a href="#process">Процесс</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+<div><div class="fctitle">Технологии</div><ul class="flinks"><li>HERMES Agent</li><li>Openclaw</li><li>MCP Protocol</li></ul></div>
 </div>
-<div class="footer-bottom"><div class="footer-copy">© 2026 AI Agents Pro</div><div class="footer-social"><a href="https://t.me/sergey_asgatovich">💬</a></div></div></div></footer>
-<script>
-document.getElementById('nav').addEventListener('scroll',function(){this.classList.toggle('scrolled',window.scrollY>50)});
-const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:.15});
-document.querySelectorAll('.service-card,.workflow-step,.stat-item,.testimonial-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='all 0.6s cubic-bezier(0.4,0,0.2,1)';obs.observe(el)})
-</script>
+<div class="fbottom"><div class="fcopy">© 2026 AI Agents Pro</div><div><a href="https://t.me/sergey_asgatovich" style="font-size:18px;color:var(--text-muted);text-decoration:none">💬</a></div></div></div></footer>
 </body>
 </html>
