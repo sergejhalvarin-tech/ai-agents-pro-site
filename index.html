@@ -55,7 +55,9 @@
       "@type":"FAQPage",
       "mainEntity":[
         {"@type":"Question","name":"Сколько времени занимает установка?","acceptedAnswer":{"@type":"Answer","text":"Базовая установка HERMES — до одного часа. HERMES + Openclaw — до двух часов. В срок уже включены все коннекторы и MCP-серверы."}},
-        {"@type":"Question","name":"Нужен ли мне собственный сервер?","acceptedAnswer":{"@type":"Answer","text":"Не обязательно. Развернём на вашей машине (Windows, Linux или macOS) либо предоставим облачный сервер."}},
+        {"@type":"Question","name":"Сколько реально стоит запуск с сервером?","acceptedAnswer":{"@type":"Answer","text":"При курсе 66,34 руб/$: HERMES — от 19600 руб/год, Openclaw — от 29400 руб/год, HERMES + Openclaw — от 49100 руб/год. В сумму входят лицензия и VPS. Расходы на API LLM оплачиваются отдельно."}},
+        {"@type":"Question","name":"Нужен ли мне собственный сервер?","acceptedAnswer":{"@type":"Answer","text":"Не обязательно. Развернём на вашей машине (Windows, Linux или macOS) либо предоставим облачный сервер. На домашнем ПК агент работает, только пока компьютер включён — для работы 24/7 рекомендуем VPS."}},
+        {"@type":"Question","name":"Нужны ли доплаты за API нейросетей?","acceptedAnswer":{"@type":"Answer","text":"Да. Расходы на OpenAI / Anthropic / другие API зависят от интенсивности использования — в среднем 5-25 $/мес на одного активного пользователя."}},
         {"@type":"Question","name":"Какие AI-модели используются?","acceptedAnswer":{"@type":"Answer","text":"DeepSeek v4, Claude Opus и Sonnet, GPT-4o, Gemini 2.5 и десятки других — подключаются через единый роутер, модель можно менять в любой момент."}},
         {"@type":"Question","name":"Что такое MCP?","acceptedAnswer":{"@type":"Answer","text":"Model Context Protocol — открытый стандарт подключения внешних инструментов к AI-агенту: TradingView, altFINS, файловая система, браузер и другие."}},
         {"@type":"Question","name":"Что с поддержкой после запуска?","acceptedAnswer":{"@type":"Answer","text":"30 дней поддержки входят в любой пакет. В HERMES + Openclaw поддержка приоритетная и круглосуточная."}},
@@ -288,6 +290,61 @@ h1,h2,h3{color:var(--ink);text-wrap:balance}
 .feats svg{width:15px;height:15px;flex-shrink:0;margin-top:4px;stroke:var(--accent-2);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .card--hero .feats svg{stroke:var(--accent-3)}
 .hr{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent);margin:0 0 24px}
+/* стоимость сервера — компактный блок под ценой */
+.srv{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;padding:16px 18px;border-radius:var(--r);
+  background:rgba(255,255,255,.025);border:1px solid var(--line)}
+.srv-row{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-3);line-height:1.4}
+.srv-row svg{width:14px;height:14px;flex-shrink:0;stroke:var(--ink-4);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.srv-row b{color:var(--ink);font-weight:600}
+.srv-row .amt{color:var(--accent-3);font-weight:600;font-variant-numeric:tabular-nums;margin-left:auto}
+
+/* переключатель валют */
+.toggle{display:inline-flex;align-items:center;gap:4px;padding:4px;margin-top:26px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line-2);border-radius:99px;backdrop-filter:blur(10px)}
+.toggle button{padding:8px 22px;border:none;background:transparent;color:var(--ink-3);font-family:var(--sans);
+  font-size:13.5px;font-weight:600;border-radius:99px;cursor:pointer;transition:color var(--t),background var(--t),box-shadow var(--t)}
+.toggle button[aria-pressed="true"]{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#fff;
+  box-shadow:0 6px 20px -8px var(--glow)}
+
+/* ============ AUDIENCE TABS ============ */
+.aud-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px}
+.aud-tab{padding:10px 20px;border-radius:99px;background:var(--panel);border:1px solid var(--line-2);color:var(--ink-3);
+  font-family:var(--sans);font-size:13.5px;font-weight:600;cursor:pointer;transition:color var(--t),border-color var(--t),background var(--t);
+  backdrop-filter:blur(10px)}
+.aud-tab:hover{color:var(--ink);border-color:var(--line-3)}
+.aud-tab[aria-selected="true"]{background:linear-gradient(180deg,var(--accent-2),var(--accent));border-color:transparent;color:#fff;
+  box-shadow:0 8px 24px -10px var(--glow)}
+.aud-panel-wrap{position:relative;border-radius:var(--r-xl);border:1px solid var(--line);background:var(--panel);
+  backdrop-filter:blur(16px);padding:clamp(28px,3.4vw,44px);box-shadow:var(--shadow);overflow:hidden;isolation:isolate}
+.aud-panel-wrap::before{content:'';position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(600px circle at 85% 0%,rgba(124,123,255,.1),transparent 60%)}
+.aud-panel{display:none;grid-template-columns:1.1fr .9fr;gap:clamp(24px,3.4vw,44px);align-items:center}
+.aud-panel.on{display:grid;animation:lineIn .45s var(--ease) both}
+.aud-panel h3{font-size:clamp(20px,2.4vw,26px);font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.aud-panel p{font-size:15px;color:var(--ink-3);line-height:1.72;margin-bottom:0}
+.aud-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.aud-box{background:rgba(255,255,255,.03);border:1px solid var(--line-2);border-radius:var(--r);padding:20px}
+.aud-box .v{font-size:clamp(18px,2vw,24px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px;
+  background:linear-gradient(160deg,#fff,var(--accent-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.aud-box .k{font-size:12.5px;color:var(--ink-4)}
+@media(max-width:768px){.aud-panel.on{grid-template-columns:1fr;gap:26px}}
+
+/* ============ COMPARISON TABLE ============ */
+.cmp-wrap{border-radius:var(--r-xl);border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(16px);
+  box-shadow:var(--shadow);overflow-x:auto}
+.cmp{width:100%;min-width:680px;border-collapse:collapse}
+.cmp th,.cmp td{padding:16px clamp(16px,2vw,26px);text-align:left;border-bottom:1px solid var(--line)}
+.cmp thead th{background:rgba(255,255,255,.03);font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;
+  letter-spacing:.06em;white-space:nowrap;position:sticky;top:0}
+.cmp thead th.hot{color:var(--accent-3)}
+.cmp tbody td{font-size:14px;color:var(--ink-3)}
+.cmp tbody td:first-child{color:var(--ink);font-weight:500}
+.cmp tbody tr:last-child td{border-bottom:none}
+.cmp tbody tr:hover td{background:rgba(255,255,255,.018)}
+.cmp col.col-hot,.cmp td.hot{background:rgba(124,123,255,.05)}
+.cmp .yes{color:var(--ok);font-weight:600;white-space:nowrap}
+.cmp .no{color:var(--ink-4)}
+.cmp .pri{color:var(--accent-3);font-weight:600}
 
 /* ============ WORKFLOW ============ */
 .flow{position:relative;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(38px,4.6vw,60px)}
@@ -453,6 +510,7 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
     <a href="#top" class="brand"><span class="brand-mark">⚡</span><span class="brand-name">AI Agents Pro</span></a>
     <div class="nav-links">
       <a href="#services" class="nav-link">Тарифы</a>
+      <a href="#compare" class="nav-link">Сравнение</a>
       <a href="#process" class="nav-link">Процесс</a>
       <a href="#reviews" class="nav-link">Отзывы</a>
       <a href="#faq" class="nav-link">FAQ</a>
@@ -464,6 +522,7 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
   </div>
   <div class="drawer" id="drawer">
     <a href="#services">Тарифы</a>
+    <a href="#compare">Сравнение</a>
     <a href="#process">Процесс</a>
     <a href="#reviews">Отзывы</a>
     <a href="#faq">FAQ</a>
@@ -530,22 +589,29 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
     <div class="section-header rv">
       <div class="eyebrow">Тарифы</div>
       <h2 class="h-section">Три пакета — от базового до полного стека</h2>
-      <p class="lede">Фиксированная цена, фиксированный срок. Всё, что нужно для запуска, уже включено.</p>
+      <p class="lede">Фиксированная цена за установку, прозрачная стоимость сервера. Всё, что нужно для запуска, уже включено.</p>
+      <div class="toggle" role="group" aria-label="Валюта">
+        <button data-cur="usd" aria-pressed="true">$ USD</button>
+        <button data-cur="rub" aria-pressed="false">₽ RUB</button>
+      </div>
     </div>
     <div class="cards">
       <article class="card rv">
         <div class="card-ico ico-h">H</div>
         <h3>HERMES Agent</h3>
         <p class="card-desc">Персональный AI-агент с памятью, скиллами и MCP. Технический напарник, который работает 24/7.</p>
-        <div class="price"><b>$199</b><i>единоразово</i></div>
-        <div class="price-sub">Установка за 1 час</div>
-        <div class="hr"></div>
+        <div class="price"><b class="amt-main" data-usd="199" data-rub="13200">$199</b><i>единоразово · установка за 1 час</i></div>
+        <div class="srv">
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>Без сервера</b><span class="amt">только лицензия</span></div>
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>С сервером</b><span class="amt">от <span class="amt-m" data-usd="8" data-rub="530">$8</span>/мес</span></div>
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><b>Год с сервером</b><span class="amt">от <span class="amt-y" data-usd="295" data-rub="19600">$295</span></span></div>
+        </div>
         <ul class="feats">
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Установка и конфигурация Hermes</li>
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Коннекторы Telegram + Discord</li>
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>5 MCP-серверов на выбор</li>
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>RAG-память и базовые скиллы</li>
-          <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Автодеплой и cron-задачи</li>
+          <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Автоответы и cron-задачи</li>
         </ul>
         <a href="#contact" class="btn btn--ghost btn--block" data-plan="HERMES Agent — $199">Выбрать пакет</a>
       </article>
@@ -555,9 +621,12 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
         <div class="card-ico ico-c">⚡</div>
         <h3>HERMES + Openclaw</h3>
         <p class="card-desc">Полный AI-стек: оба фреймворка, глубокая интеграция и максимальная гибкость под любую задачу.</p>
-        <div class="price"><b>$499</b><i>единоразово</i></div>
-        <div class="price-sub">Установка за 2 часа</div>
-        <div class="hr"></div>
+        <div class="price"><b class="amt-main" data-usd="499" data-rub="33100">$499</b><i>единоразово · установка за 2 часа</i></div>
+        <div class="srv">
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>Без сервера</b><span class="amt">только лицензия</span></div>
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>С сервером</b><span class="amt">от <span class="amt-m" data-usd="20" data-rub="1330">$20</span>/мес</span></div>
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><b>Год с сервером</b><span class="amt">от <span class="amt-y" data-usd="739" data-rub="49100">$739</span></span></div>
+        </div>
         <ul class="feats">
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Всё из пакета HERMES</li>
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Openclaw Framework</li>
@@ -573,9 +642,12 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
         <div class="card-ico ico-o">O</div>
         <h3>Openclaw Agent</h3>
         <p class="card-desc">Фреймворк для production-grade агентов. Гибкая архитектура и работа с вашим API.</p>
-        <div class="price"><b>$299</b><i>единоразово</i></div>
-        <div class="price-sub">Установка за 1.5 часа</div>
-        <div class="hr"></div>
+        <div class="price"><b class="amt-main" data-usd="299" data-rub="19840">$299</b><i>единоразово · установка за 1.5 часа</i></div>
+        <div class="srv">
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>Без сервера</b><span class="amt">только лицензия</span></div>
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>С сервером</b><span class="amt">от <span class="amt-m" data-usd="12" data-rub="800">$12</span>/мес</span></div>
+          <div class="srv-row"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><b>Год с сервером</b><span class="amt">от <span class="amt-y" data-usd="443" data-rub="29400">$443</span></span></div>
+        </div>
         <ul class="feats">
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Openclaw Framework</li>
           <li><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>Создание агентов под задачу</li>
@@ -585,6 +657,102 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
         </ul>
         <a href="#contact" class="btn btn--ghost btn--block" data-plan="Openclaw Agent — $299">Выбрать пакет</a>
       </article>
+    </div>
+    <p class="form-note" style="margin-top:26px">Цены в рублях — при курсе USD/RUB 66,34. Отдельно оплачивается API LLM: в среднем $5–25/мес на активного пользователя.</p>
+  </div>
+</section>
+
+<section class="section" id="audience" style="padding-top:0">
+  <div class="container">
+    <div class="section-header rv">
+      <div class="eyebrow">Кому подойдёт</div>
+      <h2 class="h-section">Ваша сфера — ваш пакет</h2>
+      <p class="lede">Подскажем оптимальный тариф и покажем, сколько времени освободит агент.</p>
+    </div>
+    <div class="rv">
+      <div class="aud-tabs" role="tablist">
+        <button class="aud-tab" role="tab" aria-selected="true" data-aud="bloggers">Блогеры</button>
+        <button class="aud-tab" role="tab" aria-selected="false" data-aud="finance">Финансисты</button>
+        <button class="aud-tab" role="tab" aria-selected="false" data-aud="managers">Менеджеры</button>
+        <button class="aud-tab" role="tab" aria-selected="false" data-aud="traders">Трейдеры</button>
+        <button class="aud-tab" role="tab" aria-selected="false" data-aud="legal">Юристы / HR</button>
+      </div>
+      <div class="aud-panel-wrap">
+        <div class="aud-panel on" data-aud="bloggers">
+          <div><h3>Блогеры и контент-мейкеры</h3><p>Автоответы в Telegram и Discord, планирование контента, RAG-память по всему архиву идей и постов. Рутина коммуникации уходит на агента.</p></div>
+          <div class="aud-stats">
+            <div class="aud-box"><div class="v">HERMES</div><div class="k">Рекомендуемый пакет</div></div>
+            <div class="aud-box"><div class="v">15–25 ч</div><div class="k">Экономия в месяц</div></div>
+            <div class="aud-box"><div class="v">$199</div><div class="k">Стартовая инвестиция</div></div>
+            <div class="aud-box"><div class="v">1–2 мес</div><div class="k">Срок окупаемости</div></div>
+          </div>
+        </div>
+        <div class="aud-panel" data-aud="finance">
+          <div><h3>Финансисты и аналитики</h3><p>Сбор отчётов, мониторинг показателей, интеграция с API банков и брокеров. Openclaw строит сложных production-агентов под ваши процессы.</p></div>
+          <div class="aud-stats">
+            <div class="aud-box"><div class="v">HERMES + Openclaw</div><div class="k">Рекомендуемый пакет</div></div>
+            <div class="aud-box"><div class="v">30–50 ч</div><div class="k">Экономия в месяц</div></div>
+            <div class="aud-box"><div class="v">$499</div><div class="k">Стартовая инвестиция</div></div>
+            <div class="aud-box"><div class="v">2–4 мес</div><div class="k">Срок окупаемости</div></div>
+          </div>
+        </div>
+        <div class="aud-panel" data-aud="managers">
+          <div><h3>Менеджеры и руководители</h3><p>Задачи, напоминания, CRM-интеграции и первичная обработка обращений. Hermes — личный ассистент, который ничего не забудет.</p></div>
+          <div class="aud-stats">
+            <div class="aud-box"><div class="v">HERMES</div><div class="k">Рекомендуемый пакет</div></div>
+            <div class="aud-box"><div class="v">20–30 ч</div><div class="k">Экономия в месяц</div></div>
+            <div class="aud-box"><div class="v">$199</div><div class="k">Стартовая инвестиция</div></div>
+            <div class="aud-box"><div class="v">1–2 мес</div><div class="k">Срок окупаемости</div></div>
+          </div>
+        </div>
+        <div class="aud-panel" data-aud="traders">
+          <div><h3>Трейдеры и крипто-инвесторы</h3><p>Интеграция с TradingView и биржевыми API, алерты и анализ рынка 24/7. Openclaw даёт гибкость для кастомных торговых агентов и стратегий.</p></div>
+          <div class="aud-stats">
+            <div class="aud-box"><div class="v">Openclaw / Combo</div><div class="k">Рекомендуемый пакет</div></div>
+            <div class="aud-box"><div class="v">20–40 ч</div><div class="k">Экономия в месяц</div></div>
+            <div class="aud-box"><div class="v">$299–499</div><div class="k">Стартовая инвестиция</div></div>
+            <div class="aud-box"><div class="v">1–3 мес</div><div class="k">Срок окупаемости</div></div>
+          </div>
+        </div>
+        <div class="aud-panel" data-aud="legal">
+          <div><h3>Юристы, риелторы, HR</h3><p>Шаблоны документов, первичная обработка заявок, RAG по базе знаний и автоответы клиентам. Hermes берёт на себя рутинную коммуникацию.</p></div>
+          <div class="aud-stats">
+            <div class="aud-box"><div class="v">HERMES</div><div class="k">Рекомендуемый пакет</div></div>
+            <div class="aud-box"><div class="v">15–25 ч</div><div class="k">Экономия в месяц</div></div>
+            <div class="aud-box"><div class="v">$199</div><div class="k">Стартовая инвестиция</div></div>
+            <div class="aud-box"><div class="v">1–2 мес</div><div class="k">Срок окупаемости</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="compare" style="padding-top:0">
+  <div class="container">
+    <div class="section-header rv">
+      <div class="eyebrow">Сравнение</div>
+      <h2 class="h-section">Что входит в каждый пакет</h2>
+      <p class="lede">Наглядно: чем отличаются HERMES и Openclaw и почему связка выгоднее по возможностям.</p>
+    </div>
+    <div class="cmp-wrap rv">
+      <table class="cmp">
+        <colgroup><col><col><col><col class="col-hot"></colgroup>
+        <thead><tr><th>Возможность</th><th>HERMES</th><th>Openclaw</th><th class="hot">HERMES + Openclaw</th></tr></thead>
+        <tbody>
+          <tr><td>Установка и настройка</td><td class="yes">✓ 1 час</td><td class="yes">✓ 1,5 часа</td><td class="hot yes">✓ 2 часа</td></tr>
+          <tr><td>Telegram + Discord</td><td class="yes">✓</td><td class="no">—</td><td class="hot yes">✓</td></tr>
+          <tr><td>MCP-серверы</td><td>5 шт.</td><td>12+ шт.</td><td class="hot">12+ шт.</td></tr>
+          <tr><td>RAG-память</td><td class="yes">✓</td><td class="yes">✓</td><td class="hot yes">✓</td></tr>
+          <tr><td>Интеграция с вашим API</td><td class="no">—</td><td class="yes">✓</td><td class="hot yes">✓</td></tr>
+          <tr><td>Кастомные агенты</td><td class="no">—</td><td class="yes">✓</td><td class="hot yes">✓</td></tr>
+          <tr><td>Мониторинг и алертинг</td><td class="no">—</td><td class="yes">✓</td><td class="hot yes">✓</td></tr>
+          <tr><td>CI/CD пайплайн</td><td class="no">—</td><td class="yes">✓</td><td class="hot yes">✓</td></tr>
+          <tr><td>Поддержка</td><td>Базовая</td><td>Базовая</td><td class="hot yes">Приоритетная 24/7</td></tr>
+          <tr><td>Лучше всего для</td><td>Блогеры, HR</td><td>Разработчики, трейдеры</td><td class="hot">Бизнес, финансисты, команды</td></tr>
+          <tr><td>Цена установки</td><td class="pri">$199</td><td class="pri">$299</td><td class="hot pri">$499</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -656,8 +824,12 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
     <div class="faq rv">
       <details class="qa"><summary>Сколько времени занимает установка?</summary>
         <div class="qa-body">Базовая установка HERMES — до одного часа. HERMES + Openclaw — до двух часов. В срок уже включены все коннекторы и MCP-серверы.</div></details>
+      <details class="qa"><summary>Сколько реально стоит запуск с сервером?</summary>
+        <div class="qa-body">При курсе 66,34 ₽/$: HERMES — от 19 600 ₽/год, Openclaw — от 29 400 ₽/год, HERMES + Openclaw — от 49 100 ₽/год. В сумму входят лицензия и VPS. Расходы на API LLM оплачиваются отдельно.</div></details>
       <details class="qa"><summary>Нужен ли мне собственный сервер?</summary>
-        <div class="qa-body">Не обязательно. Развернём на вашей машине (Windows, Linux или macOS) либо предоставим облачный сервер.</div></details>
+        <div class="qa-body">Не обязательно. Развернём на вашей машине (Windows, Linux или macOS) либо предоставим облачный сервер. Учтите: на домашнем ПК агент работает, только пока компьютер включён — для стабильной работы 24/7 рекомендуем VPS.</div></details>
+      <details class="qa"><summary>Нужны ли доплаты за API нейросетей?</summary>
+        <div class="qa-body">Да. Расходы на OpenAI / Anthropic / другие API зависят от интенсивности использования — в среднем $5–25/мес (примерно 330–1 650 ₽) на одного активного пользователя.</div></details>
       <details class="qa"><summary>Какие AI-модели используются?</summary>
         <div class="qa-body">DeepSeek v4, Claude Opus и Sonnet, GPT-4o, Gemini 2.5 и десятки других — подключаются через единый роутер, модель можно менять в любой момент.</div></details>
       <details class="qa"><summary>Что такое MCP?</summary>
@@ -851,6 +1023,35 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
   /* --- бегущая строка: дублируем содержимое для бесшовного цикла --- */
   var track=document.getElementById('track');
   track.innerHTML+=track.innerHTML;
+
+  /* --- переключатель валют --- */
+  var curBtns=document.querySelectorAll('.toggle button');
+  function fmt(cur,el){
+    var v=parseInt(el.getAttribute('data-'+cur),10);
+    return cur==='usd' ? '$'+v : '₽'+v.toLocaleString('ru-RU');
+  }
+  Array.prototype.forEach.call(curBtns,function(btn){
+    btn.addEventListener('click',function(){
+      var cur=btn.getAttribute('data-cur');
+      Array.prototype.forEach.call(curBtns,function(b){ b.setAttribute('aria-pressed', b===btn?'true':'false'); });
+      Array.prototype.forEach.call(document.querySelectorAll('.amt-main,.amt-m,.amt-y'),function(el){
+        el.textContent=fmt(cur,el);
+      });
+    });
+  });
+
+  /* --- вкладки «Кому подойдёт» --- */
+  var audTabs=document.querySelectorAll('.aud-tab'),
+      audPanels=document.querySelectorAll('.aud-panel');
+  Array.prototype.forEach.call(audTabs,function(tab){
+    tab.addEventListener('click',function(){
+      var key=tab.getAttribute('data-aud');
+      Array.prototype.forEach.call(audTabs,function(t){ t.setAttribute('aria-selected', t===tab?'true':'false'); });
+      Array.prototype.forEach.call(audPanels,function(p){
+        p.classList.toggle('on', p.getAttribute('data-aud')===key);
+      });
+    });
+  });
 
   /* --- выбор тарифа из карточки подставляется в форму --- */
   var planSelect=document.getElementById('f-plan');
