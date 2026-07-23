@@ -55,7 +55,7 @@
       "@type":"FAQPage",
       "mainEntity":[
         {"@type":"Question","name":"Сколько времени занимает установка?","acceptedAnswer":{"@type":"Answer","text":"Базовая установка HERMES — до одного часа. HERMES + Openclaw — до двух часов. В срок уже включены все коннекторы и MCP-серверы."}},
-        {"@type":"Question","name":"Сколько реально стоит запуск с сервером?","acceptedAnswer":{"@type":"Answer","text":"При курсе 66,34 руб/$: HERMES — от 19600 руб/год, Openclaw — от 29400 руб/год, HERMES + Openclaw — от 49100 руб/год. В сумму входят лицензия и VPS. Расходы на API LLM оплачиваются отдельно."}},
+        {"@type":"Question","name":"Сколько реально стоит запуск с сервером?","acceptedAnswer":{"@type":"Answer","text":"Год с сервером: HERMES — от $295, Openclaw — от $443, HERMES + Openclaw — от $739. В сумму входят лицензия и VPS. Цена в рублях пересчитывается на сайте по живому курсу ЦБ РФ. Расходы на API LLM оплачиваются отдельно."}},
         {"@type":"Question","name":"Нужен ли мне собственный сервер?","acceptedAnswer":{"@type":"Answer","text":"Не обязательно. Развернём на вашей машине (Windows, Linux или macOS) либо предоставим облачный сервер. На домашнем ПК агент работает, только пока компьютер включён — для работы 24/7 рекомендуем VPS."}},
         {"@type":"Question","name":"Нужны ли доплаты за API нейросетей?","acceptedAnswer":{"@type":"Answer","text":"Да. Расходы на OpenAI / Anthropic / другие API зависят от интенсивности использования — в среднем 5-25 $/мес на одного активного пользователя."}},
         {"@type":"Question","name":"Какие AI-модели используются?","acceptedAnswer":{"@type":"Answer","text":"DeepSeek v4, Claude Opus и Sonnet, GPT-4o, Gemini 2.5 и десятки других — подключаются через единый роутер, модель можно менять в любой момент."}},
@@ -305,6 +305,7 @@ h1,h2,h3{color:var(--ink);text-wrap:balance}
   font-size:13.5px;font-weight:600;border-radius:99px;cursor:pointer;transition:color var(--t),background var(--t),box-shadow var(--t)}
 .toggle button[aria-pressed="true"]{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#fff;
   box-shadow:0 6px 20px -8px var(--glow)}
+.toggle button:disabled{opacity:.4;cursor:wait}
 
 /* ============ AUDIENCE TABS ============ */
 .aud-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px}
@@ -592,7 +593,7 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
       <p class="lede">Фиксированная цена за установку, прозрачная стоимость сервера. Всё, что нужно для запуска, уже включено.</p>
       <div class="toggle" role="group" aria-label="Валюта">
         <button data-cur="usd" aria-pressed="true">$ USD</button>
-        <button data-cur="rub" aria-pressed="false">₽ RUB</button>
+        <button data-cur="rub" aria-pressed="false" disabled title="Загружаем курс…">₽ RUB</button>
       </div>
     </div>
     <div class="cards">
@@ -658,7 +659,7 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
         <a href="#contact" class="btn btn--ghost btn--block" data-plan="Openclaw Agent — $299">Выбрать пакет</a>
       </article>
     </div>
-    <p class="form-note" style="margin-top:26px">Цены в рублях — при курсе USD/RUB 66,34. Отдельно оплачивается API LLM: в среднем $5–25/мес на активного пользователя.</p>
+    <p class="form-note" style="margin-top:26px" id="rateNote">Цены в рублях пересчитываются по актуальному курсу — загружаем… Отдельно оплачивается API LLM: в среднем $5–25/мес на активного пользователя.</p>
   </div>
 </section>
 
@@ -825,11 +826,11 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
       <details class="qa"><summary>Сколько времени занимает установка?</summary>
         <div class="qa-body">Базовая установка HERMES — до одного часа. HERMES + Openclaw — до двух часов. В срок уже включены все коннекторы и MCP-серверы.</div></details>
       <details class="qa"><summary>Сколько реально стоит запуск с сервером?</summary>
-        <div class="qa-body">При курсе 66,34 ₽/$: HERMES — от 19 600 ₽/год, Openclaw — от 29 400 ₽/год, HERMES + Openclaw — от 49 100 ₽/год. В сумму входят лицензия и VPS. Расходы на API LLM оплачиваются отдельно.</div></details>
+        <div class="qa-body">Год с сервером: HERMES — от $295, Openclaw — от $443, HERMES + Openclaw — от $739. В сумму входят лицензия и VPS. Цену в рублях по живому курсу ЦБ РФ покажет переключатель ₽ в разделе «Тарифы». Расходы на API LLM оплачиваются отдельно.</div></details>
       <details class="qa"><summary>Нужен ли мне собственный сервер?</summary>
         <div class="qa-body">Не обязательно. Развернём на вашей машине (Windows, Linux или macOS) либо предоставим облачный сервер. Учтите: на домашнем ПК агент работает, только пока компьютер включён — для стабильной работы 24/7 рекомендуем VPS.</div></details>
       <details class="qa"><summary>Нужны ли доплаты за API нейросетей?</summary>
-        <div class="qa-body">Да. Расходы на OpenAI / Anthropic / другие API зависят от интенсивности использования — в среднем $5–25/мес (примерно 330–1 650 ₽) на одного активного пользователя.</div></details>
+        <div class="qa-body">Да. Расходы на OpenAI / Anthropic / другие API зависят от интенсивности использования — в среднем $5–25/мес на одного активного пользователя.</div></details>
       <details class="qa"><summary>Какие AI-модели используются?</summary>
         <div class="qa-body">DeepSeek v4, Claude Opus и Sonnet, GPT-4o, Gemini 2.5 и десятки других — подключаются через единый роутер, модель можно менять в любой момент.</div></details>
       <details class="qa"><summary>Что такое MCP?</summary>
@@ -1024,19 +1025,55 @@ a.link-row:hover{background:rgba(255,255,255,.06);border-color:var(--line-3);tra
   var track=document.getElementById('track');
   track.innerHTML+=track.innerHTML;
 
-  /* --- переключатель валют --- */
-  var curBtns=document.querySelectorAll('.toggle button');
-  function fmt(cur,el){
-    var v=parseInt(el.getAttribute('data-'+cur),10);
-    return cur==='usd' ? '$'+v : '₽'+v.toLocaleString('ru-RU');
+  /* --- переключатель валют + живой курс USD/RUB --- */
+  var curBtns=document.querySelectorAll('.toggle button'),
+      rubBtn=document.querySelector('.toggle button[data-cur="rub"]'),
+      rateNote=document.getElementById('rateNote'),
+      rate=null;
+
+  function rubVal(usd){ // округляем по-человечески: мелкое до 10 ₽, крупное до 100 ₽
+    var x=usd*rate, step=x<3000?10:100;
+    return Math.round(x/step)*step;
   }
+  function fmt(cur,el){
+    var v=parseFloat(el.getAttribute('data-usd'));
+    return cur==='usd' ? '$'+v : '₽'+rubVal(v).toLocaleString('ru-RU');
+  }
+  function renderCur(cur){
+    Array.prototype.forEach.call(document.querySelectorAll('.amt-main,.amt-m,.amt-y'),function(el){
+      el.textContent=fmt(cur,el);
+    });
+  }
+  function applyRate(r,src,stale){
+    if(!r||!isFinite(r)||r<=0) return;
+    rate=r;
+    rubBtn.disabled=false;
+    rubBtn.removeAttribute('title');
+    if(rateNote) rateNote.textContent='Курс: 1 $ = '+r.toFixed(2).replace('.',',')+' ₽ ('+src+(stale?', сохранённый':'')+
+      '). Отдельно оплачивается API LLM: в среднем $5–25/мес на активного пользователя.';
+    try{ localStorage.setItem('usdrub',JSON.stringify({r:r,t:Date.now()})) }catch(e){}
+    var active=document.querySelector('.toggle button[aria-pressed="true"]');
+    if(active&&active.getAttribute('data-cur')==='rub') renderCur('rub');
+  }
+  /* источник №1 — ЦБ РФ, №2 — er-api, №3 — кэш прошлого визита */
+  fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+    .then(function(r){return r.json()})
+    .then(function(d){ applyRate(d.Valute.USD.Value,'ЦБ РФ') })
+    .catch(function(){
+      fetch('https://open.er-api.com/v6/latest/USD')
+        .then(function(r){return r.json()})
+        .then(function(d){ applyRate(d.rates.RUB,'er-api') })
+        .catch(function(){
+          try{ var c=JSON.parse(localStorage.getItem('usdrub')); if(c&&c.r) applyRate(c.r,'курс',true); }catch(e){}
+        });
+    });
+
   Array.prototype.forEach.call(curBtns,function(btn){
     btn.addEventListener('click',function(){
       var cur=btn.getAttribute('data-cur');
+      if(cur==='rub'&&!rate) return;
       Array.prototype.forEach.call(curBtns,function(b){ b.setAttribute('aria-pressed', b===btn?'true':'false'); });
-      Array.prototype.forEach.call(document.querySelectorAll('.amt-main,.amt-m,.amt-y'),function(el){
-        el.textContent=fmt(cur,el);
-      });
+      renderCur(cur);
     });
   });
 
